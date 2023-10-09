@@ -45,48 +45,6 @@ except ImportError: #sdless
 
 script_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 extension_dir = os.path.abspath(os.path.join(script_dir, "../"))
-#Version checking{
-version_dir = os.path.join(extension_dir, "version.txt")
-with open(version_dir, 'r', encoding='utf-8') as file:
-    curverall = file.readlines()
-currentversion = curverall[0].strip()
-
-try:
-    versionurl = "https://raw.githubusercontent.com/etherealxx/batchlinks-webui/main/version.txt"
-    versionresp = requests.get(versionurl)
-    version_lines = versionresp.text.splitlines()
-    latestversion = version_lines[0].strip()
-except requests.exceptions.RequestException:
-    latestversion = '??'
-
-if latestversion != '??':
-    if currentversion == latestversion:
-        latestversiontext = ""
-    else:
-        latestversiontext = f"[Latest version: {latestversion}]"
-else:
-    latestversiontext = ""
-
-currentverforlink = latestversion.replace('.', '')
-#}
-
-vladmandic = False
-try:
-    global gradiostate
-    if cmd_opts.gradio_queue: #automatic1111
-        gradiostate = True
-    else:
-        gradiostate = False
-except AttributeError:
-    try:
-        if not cmd_opts.disable_queue: #vladmandic
-            gradiostate = True
-        else:
-            gradiostate = False
-        vladmandic = True
-    except AttributeError:
-        gradiostate = False #at this point just use onedotsix
-        pass
 
 typechecker = [
     "embedding", "embeddings", "embed", "embeds", "textualinversion", "ti",

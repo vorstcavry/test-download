@@ -1,4 +1,5 @@
 #github.com/etherealxx
+#modifer github.com/vorst-cavry
 import os
 import time
 import gradio as gr
@@ -2066,10 +2067,9 @@ def copyfrompastebin(boxwithlink):
         currentcondition = f'Done.'
         return [boxwithlink, "Pastebin link must be the first (and the only) link on the textbox!"]
 
-titletext = f"""<h3 style="display: inline-block; font-size: 20px;">⬇️ Batchlinks Downloader ({currentversion}) {latestversiontext}</h3>"""
+titletext = f"""<h3 style="display: inline-block; font-size: 20px;">Downloader [Vorst Cavry Modif]</h3>"""
 introductiontext = f"""
 {titletext}
-<h5 style="display: inline-block; font-size: 14px;"><u><a href="https://github.com/etherealxx/batchlinks-webui/blob/main/releasenotes.md" target="_blank">(what's new?)</a></u></h5>
 <p style="font-size: 14px;;">This tool will read the textbox and download every links from top to bottom one by one<br/>
 Put your links down below. Supported link: Huggingface, CivitAI, MEGA, Discord, Github, Catbox, Google Drive, Pixeldrain, Mediafire, Anonfiles, Dropbox<br/>
 Use hashtag to separate downloaded items based on their download location<br/>
@@ -2077,16 +2077,7 @@ Valid hashtags: <code>#embed</code>, <code>#model</code>,  <code>#hypernet</code
 (For colab that uses sd-webui-additional-networks extension to load LoRA, use <code>#addnetlora</code> instead)<br/>
 Use double hashtag (##) after links for comment. Useful to mark which links downloads what.<br/>
 Remember to always press the 🔄️ refresh button on the UI after downloading models etc. in order for them to show up on the list.</p>
-"""
-knowmoretext = f"""
-<p style="font-size: 14px;">Click these links for more:<br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui">Readme Page</a></u><br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui/wiki/Usage-Example">Example</a></u><br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui/wiki/Main-Syntax">Syntax</a></u><br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui/wiki/Valid-Hashtags">Valid Hashtags</a></u><br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui/blob/main/howtogetthedirectlinks.md">Here's how you can get the direct links</a></u><br/>
-<u><a href="https://github.com/etherealxx/batchlinks-webui/issues">Report Bug</a></u></p>
-"""
+
 testboxplaceholder = f"""#model
 <your model link here>
 #vae
@@ -2101,11 +2092,6 @@ def on_ui_tabs():
         with gr.Row():
           with gr.Column(scale=2):
             introduction = gr.Markdown(introductiontext)
-          with gr.Column(scale=1):
-            with gr.Row():
-                uistretcher = gr.Checkbox(value=False, label="Stretch UI", interactive=True)
-                helphider = gr.Checkbox(value=False, label="Hide Help", interactive=True)
-            knowmore = gr.Markdown(knowmoretext)
         with gr.Group():
           command = gr.Textbox(label="Links", placeholder=testboxplaceholder, lines=5)
           if gradiostate == True:
@@ -2240,7 +2226,6 @@ def on_ui_tabs():
 #                        datatype=["str", "str"],
 #                        interactive=False
 #                        )
-                # sidetext = gr.Markdown(knowmoretext, visible=True)
             def passvaluebetweenradio(newval):
                 return gr.Radio.update(value=newval)
 
@@ -2261,9 +2246,9 @@ def on_ui_tabs():
             )
         gr.Markdown(
         f"""
-        <center><p style="font-size: 12px; color: gray">Made with ❤️ by <a href="https://github.com/etherealxx">etherealxx</a></p></center>
+        <center><p style="font-size: 12px; color: gray">☕Supporst Me <a href="https://ko-fi.com/vorstcavry">Vorst Cavry</a></p></center>
         """)
-        helphider.change(hidehelp, helphider, outputs=[introduction, knowmore])
+        helphider.change(hidehelp, helphider, outputs=[introduction])
         # uistretcher.change(stretchui, uistretcher, outputs=[boxtohide, rightlist, bottomlist])
         # uistretcher.change(stretchui, uistretcher, outputs=boxtohide)
         uistretcher.change(stretchui, uistretcher, outputs=[boxtohide, downbox, civitbox, choose_downloader2, civit_default2, civit_ispruned2, civit_alsodownvae2])

@@ -24,13 +24,13 @@ except ImportError: #sdless
     if platform.system() == "Windows":
         userprofile = os.environ['USERPROFILE']
         downloadpath = os.path.join(userprofile, "Downloads")
-        script_path = os.path.join(downloadpath, "stable-diffusion-webui")
+        script_path = os.path.join(downloadpath, "vorstcavry")
     elif platform.system() == "Darwin":
         userhome = os.environ['HOME']
         downloadpath = os.path.join(userhome, "Downloads")
-        script_path = os.path.join(downloadpath, "stable-diffusion-webui")
+        script_path = os.path.join(downloadpath, "vorstcavry")
     else:
-        script_path = '/content/stable-diffusion-webui'
+        script_path = '/content/vorstcavry'
     models_path = os.path.join(script_path, 'models')
     gradio_queue = True
     ckpt_dir = None
